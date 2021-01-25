@@ -1,8 +1,8 @@
-# AcnhCritterpedia
+# ACNH Critterpedia
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/acnh_critterpedia`. To experiment with that code, run `bin/console` for an interactive prompt.
+ACNH Critterpedia is a CLI application for interacting with the Critterpedia from Animal Crossing New Horizons. It allows you to see what critters are available to catch at the current moment, as well as searching critters by month and pulling up information on specific critters.
 
-TODO: Delete this and the text above, and describe your gem
+Future functionality is planned to allow adding critters to your personal collection so you can use the Critterpedia to keep track of which critters you still need to catch.
 
 ## Installation
 
@@ -32,7 +32,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/acnh_critterpedia. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/acnh_critterpedia/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/merlumina/acnh_critterpedia. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/merlumina/acnh_critterpedia/blob/master/CODE_OF_CONDUCT.md).
 
 ## License
 
