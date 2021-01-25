@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require 'require_all'
+require 'cli-format'
 
 require_all 'lib'
 

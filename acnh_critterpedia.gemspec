@@ -32,6 +32,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry"
   spec.add_dependency "require_all"
   spec.add_dependency "colorize"
+  spec.add_dependency "cli-format"
   spec.add_dependency "httparty"
 
   # For more information and examples about making a new gem, checkout our
