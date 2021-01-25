@@ -1,6 +1,7 @@
 # frozen_string_literal: true
+require 'require_all'
 
-require_relative "acnh_critterpedia/version"
+require_all 'lib'
 
 module AcnhCritterpedia
   class Error < StandardError; end
