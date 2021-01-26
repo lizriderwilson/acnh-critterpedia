@@ -33,7 +33,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "require_all"
   spec.add_dependency "colorize"
   spec.add_dependency "cli-format"
-  spec.add_dependency "httparty"
+  spec.add_development_dependency "httparty"
 
   # For more information and examples about making a new gem, checkout our
   # guide at: https://bundler.io/guides/creating_gem.html

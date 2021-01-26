@@ -4,7 +4,6 @@ PATH
     acnh_critterpedia (0.1.0)
       cli-format
       colorize
-      httparty
       require_all
 
 GEM
@@ -50,6 +49,7 @@ PLATFORMS
 DEPENDENCIES
   acnh_critterpedia!
   bundler
+  httparty
   pry
   rake (~> 13.0)
 

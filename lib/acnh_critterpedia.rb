@@ -1,8 +1,11 @@
-# frozen_string_literal: true
+require 'pry'
+require 'httparty'
 require 'require_all'
 require 'cli-format'
 
-require_all 'lib'
+
+require 'acnh_critterpedia/version'
+require_all 'lib/acnh_critterpedia'
 
 module AcnhCritterpedia
   class Error < StandardError; end

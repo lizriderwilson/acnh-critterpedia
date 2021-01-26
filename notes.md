@@ -22,4 +22,13 @@
 - CLI
 - API
 
-### Class Relationships
+### Notes
+
+https://acnhapi.com/v1a/fish/
+https://acnhapi.com/v1a/bugs/
+https://acnhapi.com/v1a/sea/
+
+Attributes for Critter class
+name[name-USen]
+availability[month-array-northern, month-array-southern, time-array, location]
+catch-phrase
