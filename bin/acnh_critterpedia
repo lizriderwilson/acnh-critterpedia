@@ -17,8 +17,7 @@ require 'acnh_critterpedia'
                
 # }
 
-# Cli.new.call
+# Cli.new.run
 
 api = Api.new("https://acnhapi.com/v1a")
-api.search_critter_by_name("bitterling", "fish")
-puts Critter.all
+puts api.critters_available_now("fish")

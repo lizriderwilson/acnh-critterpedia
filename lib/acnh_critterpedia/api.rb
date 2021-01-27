@@ -25,7 +25,32 @@ class Api
         }
 
         critter = Critter.new(critter_hash)
+    end
 
+    def search_critters_by_month(month, critter_type)
+        req_url = "#{url}/#{critter_type}/"
+        data = HTTParty.get(req_url)
+
+        critter_list = data.select do |critter|
+            critter["availability"]["month-array-northern"].include?(Time.now.month)
+        end
+
+        list_critter_names(critter_list)
+    end
+
+    def critters_available_now(critter_type)
+        req_url = "#{url}/#{critter_type}/"
+        data = HTTParty.get(req_url)
+
+        critter_list = data.select do |critter|
+            critter["availability"]["month-array-northern"].include?(Time.now.month) &&  critter["availability"]["time-array"].include?(Time.now.hour)
+        end
+
+        list_critter_names(critter_list)
+    end
+
+    def list_critter_names(critter_list)
+        critter_list.map {|critter| critter["name"]["name-USen"]}
     end
 
 end

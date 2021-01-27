@@ -2,7 +2,7 @@
 
 class Cli
 
-    def call
+    def run
         puts "Welcome to Critterpedia! Right now, it is #{Clock.new.time}"
         print "Which hemisphere are you playing in? (north/south): "
         hemisphere = gets.chomp.downcase
