@@ -3,9 +3,21 @@
 class Cli
 
     def run
+
         puts "Welcome to Critterpedia! Right now, it is #{Clock.new.time}"
-        print "Which hemisphere are you playing in? (north/south): "
+
+        print "Which hemisphere are you playing in? (northern/southern): "
         hemisphere = gets.chomp.downcase
+        while hemisphere != "northern" && hemisphere != "southern" do
+            if hemisphere == "north" || hemisphere == "south"
+                hemisphere += "ern"
+            else
+                print "Hmm...I don't recognize that hemisphere. Please enter 'northern' or 'southern'!"
+                hemisphere = gets.chomp.downcase
+            end
+        end
+
+        critterpedia_api = Api.new(hemisphere)
         puts "You're in the #{hemisphere.capitalize}ern Hemisphere! We'll be sure to display your results accordingly."
         puts "Please take a look at the following options:"
         list_options
@@ -51,9 +63,13 @@ class Cli
     end
 
     def available_critters(critter_type)
+        critterpedia_api.critters_available_now(critter_type)
     end
 
     def critters_by_month(critter_type)
+        print "Please choose a month (1-12) to see the #{critter_type} available that month:"
+        
+        critterpedia_api.search_critters_by_month()
     end
 
 end

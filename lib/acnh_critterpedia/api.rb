@@ -5,10 +5,11 @@
 # puts resp
 
 class Api
-    attr_accessor :url
+    attr_accessor :url, :hemisphere
 
-    def initialize(url)
-        @url = url
+    def initialize(hemisphere)
+        @url = "https://acnhapi.com/v1a"
+        @hemisphere = hemisphere
     end
 
     def search_critter_by_name(name, critter_type)
@@ -20,7 +21,7 @@ class Api
             name: data["name"]["name-USen"],
             location: data["availability"]["location"],
             catch_phrase: data["catch-phrase"],
-            months: data["availability"]["month-array-northern"],
+            months: data["availability"]["month-array-#{hemisphere}"],
             hours: data["availability"]["time-array"]
         }
 
@@ -32,7 +33,7 @@ class Api
         data = HTTParty.get(req_url)
 
         critter_list = data.select do |critter|
-            critter["availability"]["month-array-northern"].include?(Time.now.month)
+            critter["availability"]["month-array-#{hemisphere}"].include?(Time.now.month)
         end
 
         list_critter_names(critter_list)
@@ -43,7 +44,7 @@ class Api
         data = HTTParty.get(req_url)
 
         critter_list = data.select do |critter|
-            critter["availability"]["month-array-northern"].include?(Time.now.month) &&  critter["availability"]["time-array"].include?(Time.now.hour)
+            critter["availability"]["month-array-#{hemisphere}"].include?(Time.now.month) &&  critter["availability"]["time-array"].include?(Time.now.hour)
         end
 
         list_critter_names(critter_list)
