@@ -13,7 +13,6 @@ class Api
     end
 
     def search_critter_by_name(name, critter_type)
-        # https://acnhapi.com/v1a/fish/
         req_url = "#{url}/#{critter_type}/#{name}"
         data = HTTParty.get(req_url)
         

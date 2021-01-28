@@ -24,4 +24,14 @@ class Critter
         self.class.all << self
     end
 
+    def print_attributes
+        puts <<-CRITTER_INFO
+          Name: #{name}
+          Location: #{location}
+          Months Available: #{months}
+          Hours Available: #{hours}
+          Catch Phrase: #{catch_phrase}
+        CRITTER_INFO
+    end
+
 end
