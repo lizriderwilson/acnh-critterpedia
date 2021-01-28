@@ -21,7 +21,11 @@ class Api
             location: data["availability"]["location"],
             catch_phrase: data["catch-phrase"],
             months: data["availability"]["month-array-#{hemisphere}"],
-            hours: data["availability"]["time-array"]
+            month_range: data["availability"]["month-#{hemisphere}"],
+            is_all_year: data["availability"]["isAllYear"],
+            hours: data["availability"]["time-array"],
+            time_range: data["availability"]["time"],
+            is_all_day: data["availability"]["isAllDay"]
         }
 
         critter = Critter.new(critter_hash)

@@ -5,8 +5,8 @@ class Critter
     # availability[month-array-northern, month-array-southern, time-array, location]
     # catch-phrase
 
-    attr_reader :name, :location, :catch_phrase
-    attr_accessor :months, :hours
+    attr_reader :name, :location, :catch_phrase, :hours, :time_range, :is_all_year, :is_all_day
+    attr_accessor :months, :month_range
     @@all = []
 
     def initialize(hash)
@@ -26,11 +26,11 @@ class Critter
 
     def print_attributes
         puts <<-CRITTER_INFO
-          Name: #{name}
-          Location: #{location}
-          Months Available: #{months}
-          Hours Available: #{hours}
-          Catch Phrase: #{catch_phrase}
+    Name: #{name.capitalize}
+    Location: #{location}
+    Months Available: #{is_all_year ? "All Year" : month_range}
+    Hours Available: #{is_all_day ? "All Day" : time_range}
+    Catch Phrase: #{catch_phrase}
         CRITTER_INFO
     end
 
