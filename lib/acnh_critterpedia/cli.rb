@@ -5,7 +5,7 @@ class Cli
 
     def run
 
-        puts "Welcome to Critterpedia! Right now, it is #{Clock.new.time}"
+        puts "Welcome to Critterpedia! Right now, it is #{Time.now.strftime("%l:%M%p - %A, %B %e %Y")}"
 
         print "Which hemisphere are you playing in? (northern/southern): "
         hemisphere = gets.chomp.downcase
