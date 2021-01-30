@@ -5,9 +5,9 @@ class Cli
 
     def run
 
-        puts "Welcome to Critterpedia! Right now, it is #{Time.now.strftime("%l:%M%p - %A, %B %e %Y")}"
+        puts "#{"Welcome to Critterpedia!".colorize(:light_green)} Right now, it is #{Time.now.strftime("%l:%M%p - %A, %B %e %Y")}"
 
-        print "Which hemisphere are you playing in? (northern/southern): "
+        print "Which hemisphere are you playing in? (#{"northern".colorize(:light_red)}/#{"southern".colorize(:light_red)}): "
         hemisphere = gets.chomp.downcase
         while hemisphere != "northern" && hemisphere != "southern" do
             if hemisphere == "north" || hemisphere == "south"
@@ -25,7 +25,7 @@ class Cli
 
         input = ""
         while input != "exit"
-            puts "What would you like to do now? Type 'options' for a list of available commands."
+            puts "What would you like to do now? Type '#{"options".colorize(:light_magenta)}' for a list of available commands."
             input = gets.strip
 
             case input
@@ -68,8 +68,15 @@ class Cli
             presenter.rows << row
         end
         presenter.show
-        puts "Type 'about' for more information."
-        puts "Type 'exit' to close the program."
+        puts "Type '#{"about".colorize(:light_magenta)}' for more information."
+        puts "Type '#{"exit".colorize(:light_magenta)}' to close the program."
+    end
+
+    def about_program
+        puts "* (1 - 3) #{"View Available [Critter]".colorize(:light_yellow)} will list all of the critters of the chosen type that are available to catch right now."
+        puts "* (4 - 6) View [Critter] by Month asks you to choose a month (1-12) and lists all the critters of the chosen type that can be caught during that month."
+        puts "* (7 - 9) Search [Critter] by Name will list the months and time of day the critter can be caught, where it can be caught, and its catch phrase."
+        puts "* When searching by month or name, critters that are currently available to be caught will be #{"highlighted in yellow".colorize(:yellow)}!"
     end
 
     def parse_name(string)

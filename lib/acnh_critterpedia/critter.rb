@@ -27,11 +27,20 @@ class Critter
     def print_attributes
         puts <<-CRITTER_INFO
     Name: #{name.capitalize}
-    Location: #{location}
     Months Available: #{is_all_year ? "All Year" : month_range}
     Hours Available: #{is_all_day ? "All Day" : time_range}
+    Location: #{location}
     Catch Phrase: #{catch_phrase}
         CRITTER_INFO
+    end
+
+    def available_this_month?
+    end
+
+    def available_this_hour?
+    end
+
+    def available_now?
     end
 
 end

@@ -15,7 +15,7 @@ puts %q{
                 /N\ /e\ /w\     /H\ /o\ /r\ /i\ /z\ /o\ /n\ /s\ 
                <___X___X___>   <___X___X___X___X___X___X___X___>
                
-}
+}.colorize(:light_yellow)
 
 Cli.new.run
 
