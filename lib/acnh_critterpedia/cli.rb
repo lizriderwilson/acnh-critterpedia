@@ -5,9 +5,9 @@ class Cli
 
     def run
 
-        puts "#{"Welcome to Critterpedia!".colorize(:light_green)} Right now, it is #{Time.now.strftime("%l:%M%p - %A, %B %e %Y")}"
+        puts "#{"Welcome to Critterpedia!".light_green} Right now, it is #{Time.now.strftime("%l:%M%p - %A, %B %e %Y")}\n\n"
 
-        print "Which hemisphere are you playing in? (#{"northern".colorize(:light_red)}/#{"southern".colorize(:light_red)}): "
+        print "Which hemisphere are you playing in? (#{"northern".light_magenta}/#{"southern".light_magenta}): "
         hemisphere = gets.chomp.downcase
         while hemisphere != "northern" && hemisphere != "southern" do
             if hemisphere == "north" || hemisphere == "south"
@@ -19,13 +19,12 @@ class Cli
         end
 
         @critterpedia_api = Api.new(hemisphere)
-        puts "You're in the #{hemisphere.capitalize}ern Hemisphere! We'll be sure to display your results accordingly."
-        puts "Please take a look at the following options:"
+        puts "You're in the #{hemisphere.capitalize}ern Hemisphere! We'll be sure to display your results accordingly.\n\n"
         list_options
 
         input = ""
         while input != "exit"
-            puts "What would you like to do now? Type '#{"options".colorize(:light_magenta)}' for a list of available commands."
+            print "What would you like to do now? Type '#{"options".light_magenta}' for a list of available commands."
             input = gets.strip
 
             case input
@@ -56,27 +55,25 @@ class Cli
     end
 
     def list_options
-        format = {header: false, format: "table"}
-        data = [
-            ["1. View Available Fish", "2. View Available Bugs", "3. View Available Sea Creatures"],
-            ["4. View Fish by Month", "5. View Bugs by Month", "6. View Sea Creatures by Month"],
-            ["7. Search Fish by Name", "8. Search Bugs by Name", "9. Search Sea Creatures by Name"]
-        ]
 
-        presenter = CliFormat::Presenter.new(format)
-        data.each do |row|
-            presenter.rows << row
+        table = Terminal::Table.new do |t|
+            t.title = "Options (pick a number)"
+            t.add_row ["1. View Available #{"Fish".cyan}", "2. View Available #{"Bugs".green}", "3. View Available #{"Sea Creatures".blue}"]
+            t.add_row ["4. View #{"Fish".cyan} by Month", "5. View #{"Bugs".green} by Month", "6. View #{"Sea Creatures".blue} by Month"]
+            t.add_row ["7. Search #{"Fish".cyan} by Name", "8. Search #{"Bugs".green} by Name", "9. Search #{"Sea Creatures".blue} by Name"]
+            t.style = {:all_separators => true}
         end
-        presenter.show
-        puts "Type '#{"about".colorize(:light_magenta)}' for more information."
-        puts "Type '#{"exit".colorize(:light_magenta)}' to close the program."
+
+        puts table
+        puts "Type '#{"about".light_magenta}' for more information."
+        puts "Type '#{"exit".light_magenta}' to close the program.\n\n"
     end
 
     def about_program
-        puts "* (1 - 3) #{"View Available [Critter]".colorize(:light_yellow)} will list all of the critters of the chosen type that are available to catch right now."
-        puts "* (4 - 6) View [Critter] by Month asks you to choose a month (1-12) and lists all the critters of the chosen type that can be caught during that month."
-        puts "* (7 - 9) Search [Critter] by Name will list the months and time of day the critter can be caught, where it can be caught, and its catch phrase."
-        puts "* When searching by month or name, critters that are currently available to be caught will be #{"highlighted in yellow".colorize(:yellow)}!"
+        puts "* #{"View Available [Critter]".green.bold} (options 1-3) will list all of the critters of the chosen type that are available to catch right now."
+        puts "* #{"View [Critter] by Month]".green.bold} (options 4-6) asks you to choose a month (1-12) and lists all the critters of the chosen type that can be caught during that month."
+        puts "* #{"Search [Critter] by Name]".green.bold} (options 7-9) will list the months and time of day the critter can be caught, where it can be caught, and its catch phrase."
+        puts "* When searching by month or name, critters that are currently available to be caught will be #{"highlighted in yellow".yellow}!\n\n"
     end
 
     def parse_name(string)
