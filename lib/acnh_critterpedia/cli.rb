@@ -31,6 +31,8 @@ class Cli
             case input
             when "options"
                 list_options
+            when "about"
+                about_program
             when "1"
                 available_critters("fish")
             when "2"
@@ -66,7 +68,12 @@ class Cli
             presenter.rows << row
         end
         presenter.show
+        puts "Type 'about' for more information."
         puts "Type 'exit' to close the program."
+    end
+
+    def parse_name(string)
+        string.gsub(" ", "_").gsub("'", "").downcase
     end
 
     def available_critters(critter_type)
@@ -82,7 +89,8 @@ class Cli
 
     def critters_by_name(critter_type)
         print "Please type the name of the #{critter_type == "sea" ? critter_type + " creatures" : critter_type} you'd like to learn more about: "
-        name = gets.chomp.gsub(" ", "_").gsub("'", "").downcase
+        # name = gets.chomp.gsub(" ", "_").gsub("'", "").downcase
+        name = parse_name(gets.chomp)
 
         critter = critterpedia_api.search_critter_by_name(name, critter_type)
         critter.print_attributes
