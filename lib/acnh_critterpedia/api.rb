@@ -1,10 +1,4 @@
-# require_relative '../acnh_critterpedia/critter.rb'
-
-# resp = HTTParty.get("https://acnhapi.com/v1a/fish/bitterling")
-
-# puts resp
-
-class Api
+class AcnhCritterpedia::API
     attr_accessor :url, :hemisphere
 
     def initialize(hemisphere)
@@ -16,19 +10,21 @@ class Api
         req_url = "#{url}/#{critter_type}/#{name}"
         data = HTTParty.get(req_url)
         
-        critter_hash = {
-            name: data["name"]["name-USen"],
-            location: data["availability"]["location"],
-            catch_phrase: data["catch-phrase"],
-            months: data["availability"]["month-array-#{hemisphere}"],
-            month_range: data["availability"]["month-#{hemisphere}"],
-            is_all_year: data["availability"]["isAllYear"],
-            hours: data["availability"]["time-array"],
-            time_range: data["availability"]["time"],
-            is_all_day: data["availability"]["isAllDay"]
-        }
+        if data.message == "Not Found"
+            "error"
+        else
+            critter_hash = {
+                name: data["name"]["name-USen"],
+                location: data["availability"]["location"],
+                catch_phrase: data["catch-phrase"],
+                month_range: data["availability"]["month-#{hemisphere}"],
+                is_all_year: data["availability"]["isAllYear"],
+                time_range: data["availability"]["time"],
+                is_all_day: data["availability"]["isAllDay"]
+            }
 
-        critter = Critter.new(critter_hash)
+            critter = AcnhCritterpedia::Critter.new(critter_hash)
+        end
     end
 
     def search_critters_by_month(month, critter_type)

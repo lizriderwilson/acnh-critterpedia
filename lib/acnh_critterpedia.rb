@@ -1,7 +1,8 @@
-require 'pry'
+require 'pry-byebug'
 require 'httparty'
 require 'require_all'
-require 'cli-format'
+require 'terminal-table'
+require 'colorize'
 
 require 'acnh_critterpedia/version'
 require_all 'lib/acnh_critterpedia'

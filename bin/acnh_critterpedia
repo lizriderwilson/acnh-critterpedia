@@ -15,9 +15,6 @@ puts %q{
                 /N\ /e\ /w\     /H\ /o\ /r\ /i\ /z\ /o\ /n\ /s\ 
                <___X___X___>   <___X___X___X___X___X___X___X___>
                
-}
+}.light_yellow
 
-Cli.new.run
-
-# api = Api.new("southern")
-# puts api.critters_available_now("bugs")
+AcnhCritterpedia::CLI.new.run
