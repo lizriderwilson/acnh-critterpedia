@@ -1,6 +1,4 @@
-
-
-class Cli
+class AcnhCritterpedia::CLI
     attr_accessor :critterpedia_api
 
     def run
@@ -13,18 +11,18 @@ class Cli
             if hemisphere == "north" || hemisphere == "south"
                 hemisphere += "ern"
             else
-                print "Hmm...I don't recognize that hemisphere. Please enter 'northern' or 'southern'!"
+                print "Hmm...I don't recognize that hemisphere. Please enter 'northern' or 'southern'! ".light_red
                 hemisphere = gets.chomp.downcase
             end
         end
 
-        @critterpedia_api = Api.new(hemisphere)
-        puts "You're in the #{hemisphere.capitalize}ern Hemisphere! We'll be sure to display your results accordingly.\n\n"
+        @critterpedia_api = AcnhCritterpedia::API.new(hemisphere)
+        puts "You're in the #{hemisphere.capitalize} Hemisphere! We'll be sure to display your results accordingly."
         list_options
 
         input = ""
         while input != "exit"
-            print "What would you like to do now? Type '#{"options".light_magenta}' for a list of available commands."
+            print "\nWhat would you like to do now? Type '#{"options".light_magenta}' for a list of available commands. "
             input = gets.strip
 
             case input
@@ -64,16 +62,17 @@ class Cli
             t.style = {:all_separators => true}
         end
 
+        puts ""
         puts table
         puts "Type '#{"about".light_magenta}' for more information."
-        puts "Type '#{"exit".light_magenta}' to close the program.\n\n"
+        puts "Type '#{"exit".light_magenta}' to close the program."
     end
 
     def about_program
+        puts ""
         puts "* #{"View Available [Critter]".green.bold} (options 1-3) will list all of the critters of the chosen type that are available to catch right now."
-        puts "* #{"View [Critter] by Month]".green.bold} (options 4-6) asks you to choose a month (1-12) and lists all the critters of the chosen type that can be caught during that month."
-        puts "* #{"Search [Critter] by Name]".green.bold} (options 7-9) will list the months and time of day the critter can be caught, where it can be caught, and its catch phrase."
-        puts "* When searching by month or name, critters that are currently available to be caught will be #{"highlighted in yellow".yellow}!\n\n"
+        puts "* #{"View [Critter] by Month".green.bold} (options 4-6) asks you to choose a month (1-12) and lists all the critters of the chosen type that can be caught during that month."
+        puts "* #{"Search [Critter] by Name".green.bold} (options 7-9) will list the months and time of day the critter can be caught, where it can be caught, and its catch phrase.\n"
     end
 
     def parse_name(string)
@@ -81,6 +80,7 @@ class Cli
     end
 
     def available_critters(critter_type)
+        puts "\n#{critter_type == "sea" ? critter_type.capitalize + " creatures" : critter_type.capitalize} currently available to catch:\n".yellow.bold
         puts critterpedia_api.critters_available_now(critter_type)
     end
 
@@ -88,16 +88,21 @@ class Cli
         print "Please choose a month (1-12) to see the #{critter_type == "sea" ? critter_type + " creatures" : critter_type} available that month: "
         month = gets.chomp.to_i
 
+        puts "\n#{critter_type == "sea" ? critter_type.capitalize + " creatures" : critter_type.capitalize} available to catch in #{Time.new(1970, month).strftime("%B")}:\n".yellow.bold
         puts critterpedia_api.search_critters_by_month(month, critter_type)
     end
 
     def critters_by_name(critter_type)
-        print "Please type the name of the #{critter_type == "sea" ? critter_type + " creatures" : critter_type} you'd like to learn more about: "
-        # name = gets.chomp.gsub(" ", "_").gsub("'", "").downcase
+        print "Please type the name of the #{critter_type == "sea" ? critter_type + " creature" : critter_type} you'd like to learn more about: "
         name = parse_name(gets.chomp)
 
         critter = critterpedia_api.search_critter_by_name(name, critter_type)
-        critter.print_attributes
+        if critter == "error"
+            puts "Sorry, I don't recognize the name of that #{critter_type == "sea" ? critter_type + " creature" : critter_type}! Please type another name.".light_red
+            critters_by_name(critter_type)
+        else
+            critter.print_attributes
+        end
     end
 
 end

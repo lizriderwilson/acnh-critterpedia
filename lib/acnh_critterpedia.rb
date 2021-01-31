@@ -1,4 +1,4 @@
-require 'pry'
+require 'pry-byebug'
 require 'httparty'
 require 'require_all'
 require 'terminal-table'
