@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    acnh_critterpedia (1.0.0)
+    acnh_critterpedia (1.0.1)
       colorize
       require_all
       terminal-table
