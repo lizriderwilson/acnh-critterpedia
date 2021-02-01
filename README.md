@@ -6,27 +6,21 @@ Future functionality is planned to allow adding critters to your personal collec
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'acnh_critterpedia'
-```
-
-And then execute:
-
-    $ bundle install
-
-Or install it yourself as:
+To install, run the following command:
 
     $ gem install acnh_critterpedia
 
 ## Usage
 
-TODO: Write usage instructions here
+After installing, run
+    $ acnh_critterpedia
+to start the application.
+
+ACNH Critterpedia is an interactive app for interfacing with Animal Crossing New Horizon's Critterpedia. It is for personal use to help you keep track of available critters while you play the game!
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bin/setup` to install dependencies.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
