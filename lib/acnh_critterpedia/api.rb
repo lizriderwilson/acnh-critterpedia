@@ -32,7 +32,7 @@ class AcnhCritterpedia::API
         data = HTTParty.get(req_url)
 
         critter_list = data.select do |critter|
-            critter["availability"]["month-array-#{hemisphere}"].include?(Time.now.month)
+            critter["availability"]["month-array-#{hemisphere}"].include?(month)
         end
 
         list_critter_names(critter_list)
