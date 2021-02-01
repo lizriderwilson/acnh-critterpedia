@@ -1,4 +1,3 @@
-require 'pry-byebug'
 require 'httparty'
 require 'require_all'
 require 'terminal-table'
@@ -9,5 +8,4 @@ require_all 'lib/acnh_critterpedia'
 
 module AcnhCritterpedia
   class Error < StandardError; end
-  # Your code goes here...
 end
