@@ -31,5 +31,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "require_all"
   spec.add_dependency "colorize"
   spec.add_dependency "terminal-table"
+  spec.add_dependency "sqlite3"
 
 end
