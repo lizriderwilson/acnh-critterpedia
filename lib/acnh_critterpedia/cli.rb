@@ -16,7 +16,8 @@ class AcnhCritterpedia::CLI
             end
         end
 
-        @critterpedia_api = AcnhCritterpedia::API.new(hemisphere)
+        @critterpedia_api = AcnhCritterpedia::API.new
+        critterpedia_api.import_critters
         puts "You're in the #{hemisphere.capitalize} Hemisphere! We'll be sure to display your results accordingly."
         list_options
 
